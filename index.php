@@ -1,4 +1,8 @@
-<?php ?>
+<?php
+if(!(isset($_SESSION["uname"]))){
+    header('Location: http://localhost/Exalt-hackathon/signIn.php');
+}
+?>
 
 
 <!Doctype html>
@@ -25,8 +29,10 @@
                 <a class="nav-link text-center" href="./index.php">
                     <img src='https://www.exalt-tech.com/asset/img/logo.svg' width="100px">
                 </a>
-                <a class="nav-link col-6 text-center active" href="./index.php">Add an interview</a>
-                <a class="nav-link col-6 text-center" href="./interviews.php">Scheduled Interviews</a>
+                <a class="nav-link col-4 text-center active" href="./index.php">Add an interview</a>
+                <a class="nav-link col-4 text-center" href="./interviews.php">Scheduled Interviews</a>
+                <a class="nav-link col-4 text-center" href="./signOut.php">Sign out</a>
+
             </div>
         </div>
     </div>

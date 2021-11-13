@@ -1,3 +1,22 @@
+<?php 
+        session_start();
+    $db = new mysqli('localhost' , 'root' , '' , 'hackathon');
+    if(mysqli_connect_errno()){
+        echo 'no connection to database';
+    }
+    if(isset($_POST["uname"])){
+        echo "1";
+        $query = "select * from hr_info where username = '".$_POST["uname"]."'";
+        $result = $db->query($query);
+        $row = $result->fetch_assoc();
+              if($row["password"] == $_POST["psw"]) {
+                  $_SESSION["uname"] = $_POST["uname"];
+                    echo $query;
+                    header('Location: http://localhost/Exalt-hackathon/index.php');
+                }
+        
+        }
+?>
 <!DOCTYPE html>
 <html>
 
@@ -82,7 +101,7 @@
 
 <div class="container">
     <h2>HR Intrview Scheduler</h2>
-    <form action="#" method="post">
+    <form method="post">
         <div class="imgcontainer">
             <img src="Capture.PNG" alt="Avatar" class="avatar" width="50px" height="100px">
         </div>
@@ -93,7 +112,7 @@
 
             <label for="passwordTextId"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="psw" required id="passwordTextId">
-            <button type="submit" onclick="submitButton()">Login</button>
+            <button type="submit">Login</button>
         </div>
 
 
