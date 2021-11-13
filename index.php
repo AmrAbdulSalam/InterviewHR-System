@@ -1,6 +1,30 @@
 <?php
+session_start();
 if(!(isset($_SESSION["uname"]))){
     header('Location: http://localhost/Exalt-hackathon/signIn.php');
+}
+
+
+
+//insert to database
+if(isset($_POST["submit"])) {
+    $db = new mysqli('localhost' , 'root' , '' , 'hackathon');
+    if(mysqli_connect_errno()){
+        echo 'no connection to database';
+    }
+    echo "hi";
+    $interviewer = $_POST["InterName"];
+    $interviewee = $_POST["CandName"];
+    $time = $_POST["Date"];
+    $phone = $_POST["Tel"];
+    $position = $_POST["Position"];
+    $roomid = $_POST["Room"];
+    $branch = $_POST["Branch"];
+
+    $query = "insert into interview (interviewer_name,interviewee,time,phonenumber,position,roomid,branch) values($interviewer,$interviewee,
+    $time,$phone,$position,$roomid,$branch)";
+    echo $query;
+    $db->query($query);
 }
 ?>
 
@@ -121,7 +145,7 @@ if(!(isset($_SESSION["uname"]))){
                 <div class="input-group-append">
                     <tr>
                         <td colspan="2" class="text-center col-6">
-                            <input class="btn btn-dark" type="submit"  style="width: 20%" value="Schedule">
+                            <input class="btn btn-dark" name = "submit" type="submit"  style="width: 20%" value="Schedule">
                         </td>
                     </tr>
                 </div>

@@ -1,17 +1,15 @@
 <?php 
-        session_start();
+    session_start();
     $db = new mysqli('localhost' , 'root' , '' , 'hackathon');
     if(mysqli_connect_errno()){
         echo 'no connection to database';
     }
     if(isset($_POST["uname"])){
-        echo "1";
         $query = "select * from hr_info where username = '".$_POST["uname"]."'";
         $result = $db->query($query);
         $row = $result->fetch_assoc();
               if($row["password"] == $_POST["psw"]) {
                   $_SESSION["uname"] = $_POST["uname"];
-                    echo $query;
                     header('Location: http://localhost/Exalt-hackathon/index.php');
                 }
         
