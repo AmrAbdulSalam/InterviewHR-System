@@ -12,7 +12,6 @@ if(isset($_POST["submit"])) {
     if(mysqli_connect_errno()){
         echo 'no connection to database';
     }
-    echo "hi";
     $interviewer = $_POST["InterName"];
     $interviewee = $_POST["CandName"];
     $int_date = $_POST["Date"];
@@ -21,10 +20,16 @@ if(isset($_POST["submit"])) {
     $roomid = $_POST["Room"];
     $branch = $_POST["Branch"];
     $interview_time = $_POST["InterviewTime"];
-    $query = "insert into interview (interviewer_name,interviewee,int_date,phonenumber,position,roomid,branch,int_time) values('$interviewer','$interviewee',
-    '$int_date','$phone','$position',$roomid,'$branch','$interview_time')";
-    echo $query;
-    $query = $db->query($query);
+    $query = "select * from interview where int_date ='$int_date'";
+    $res = $db -> query($query);
+    if(mysqli_num_rows ($res)<6){
+        $query = "insert into interview (interviewer_name,interviewee,int_date,phonenumber,position,roomid,branch,int_time) values('$interviewer','$interviewee',
+      '$int_date','$phone','$position',$roomid,'$branch','$interview_time')";
+        echo $query;
+        $query = $db->query($query);
+    } else {
+        echo "<script>alert('Maxium number of interviews have been exceeded') </script>";
+    }
     
 }
 ?>
