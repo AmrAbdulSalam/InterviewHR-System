@@ -23,13 +23,27 @@ if(isset($_POST["submit"])) {
     $query = "select * from interview where int_date ='$int_date'";
     $res = $db -> query($query);
     if(mysqli_num_rows ($res)<6){
+        if(intval(explode(":",$interview_time)[0])<13 && intval(explode(":",$interview_time)[0]) >= 11){
+            $query = "select * from interview where int_date ='$int_date' and int_time ='$interview_time' and branch = '$branch' and roomid = $roomid";
+            $res = $db -> query($query);
+            if(mysqli_num_rows ($res) != 0){
+                echo "<script>alert('Time is already booked') </script>";
+            } else {
+                if($branch == "Nablus" && $roomid == 2) {
+                    echo "<script>alert('There is no room number 2 in Nablus branch') </script>";
+                } else {
         $query = "insert into interview (interviewer_name,interviewee,int_date,phonenumber,position,roomid,branch,int_time) values('$interviewer','$interviewee',
       '$int_date','$phone','$position',$roomid,'$branch','$interview_time')";
-        echo $query;
-        $query = $db->query($query);
+        $query = $db->query($query); 
+                   }
+                }
+        } else {
+            echo "<script>alert('Time must be between 11 am && 1 pm') </script>";
+        }
     } else {
         echo "<script>alert('Maxium number of interviews have been exceeded') </script>";
     }
+  
     
 }
 ?>
