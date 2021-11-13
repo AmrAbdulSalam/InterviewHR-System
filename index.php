@@ -15,16 +15,17 @@ if(isset($_POST["submit"])) {
     echo "hi";
     $interviewer = $_POST["InterName"];
     $interviewee = $_POST["CandName"];
-    $time = $_POST["Date"];
+    $int_date = $_POST["Date"];
     $phone = $_POST["Tel"];
     $position = $_POST["Position"];
     $roomid = $_POST["Room"];
     $branch = $_POST["Branch"];
-
-    $query = "insert into interview (interviewer_name,interviewee,time,phonenumber,position,roomid,branch) values($interviewer,$interviewee,
-    $time,$phone,$position,$roomid,$branch)";
+    $interview_time = $_POST["InterviewTime"];
+    $query = "insert into interview (interviewer_name,interviewee,int_date,phonenumber,position,roomid,branch,int_time) values('$interviewer','$interviewee',
+    '$int_date','$phone','$position',$roomid,'$branch','$interview_time')";
     echo $query;
-    $db->query($query);
+    $query = $db->query($query);
+    
 }
 ?>
 
@@ -86,7 +87,16 @@ if(isset($_POST["submit"])) {
                         <label for="Date">Date</label>
                     </td>
                     <td class="text-center col-6">
-                        <input type="datetime-local" id="Date" name="Date" style="width: 50%" required
+                        <input type="date" id="Date" name="Date" style="width: 50%" required
+                               class="form-control">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center col-6">
+                        <label for="InterviewTime">Time</label>
+                    </td>
+                    <td class="text-center col-6">
+                        <input type="time" id="InterviewTime" name="InterviewTime" style="width: 50%" required
                                class="form-control">
                     </td>
                 </tr>

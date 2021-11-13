@@ -40,6 +40,72 @@ if(!(isset($_SESSION["uname"]))){
 </nav>
 
 
+<div class="container" style="margin-top: 70px">
+
+
+    <form method="post">
+    
+    <div class="input-group mb-3">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>
+                    <label for="date" value="Select a date">Select a date</label> 
+                    </td>
+                    <td>
+                    <input type="date" name= "date" id= "date">
+                    </td>
+                    <td>
+                    <input class="btn btn-dark" type="submit" name="submit">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    </form>      
+          <table class="table">
+                <thead class="text-center">
+                <tr>
+                    <th>Interviewer name</th>
+                    <th>Interviewee name</th>
+                    <th> Phone No. </th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Position</th>
+                    <th>Room ID</th>
+                    <th> Branch </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                    if(isset($_POST["submit"])){
+                        $db = new mysqli('localhost' , 'root' , '' , 'hackathon');
+                        if(mysqli_connect_errno()){
+                            echo 'no connection to database';
+                        }    
+                        $date = $_POST["date"];
+                        $query = "select * from interview where int_date = '$date'";
+                        $result = $db->query($query);
+                        while($row = $result ->fetch_assoc()){ 
+                            echo "<tr>";
+                                 echo "<td>".$row["interviewer_name"]."</td>"; 
+                                 echo "<td>".$row["interviewee"]."</td>"; 
+                                 echo "<td>".$row["phonenumber"]."</td>"; 
+                                 echo "<td>".$row["int_date"]."</td>"; 
+                                 echo "<td>".$row["int_time"]."</td>"; 
+                                 echo "<td>".$row["position"]."</td>"; 
+                                 echo "<td>".$row["roomid"]."</td>"; 
+                                 echo "<td>".$row["branch"]."</td></tr>"; 
+                        }
+                        
+                    }
+                    ?>
+                </tbody>
+            </table>
+  
+
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
