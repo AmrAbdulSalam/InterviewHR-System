@@ -57,7 +57,7 @@ if(isset($_POST["submit"])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <title>HR Interviews Scheduler</title>
-    <link rel="stylesheet" href="indexSheet.css">
+    <link rel="stylesheet" href="CSS/indexSheet.css">
 </head>
 
 <!--https://www.exalt-tech.com/asset/img/logo.svg-->

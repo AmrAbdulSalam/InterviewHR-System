@@ -101,7 +101,7 @@
     <h2>HR Intrview Scheduler</h2>
     <form method="post">
         <div class="imgcontainer">
-            <img src="Capture.PNG" alt="Avatar" class="avatar" width="50px" height="100px">
+            <img src="images/Capture.PNG" alt="Avatar" class="avatar" width="50px" height="100px">
         </div>
 
         <div class="container">
@@ -120,7 +120,7 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 
-<script src="./signInAction.js"></script>
+<script src="JS/signInAction.js"></script>
 </body>
 
 </html>
